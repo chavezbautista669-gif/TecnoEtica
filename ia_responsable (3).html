@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aprendé a usar la inteligencia artificial de forma segura, crítica y responsable.">
+<title>TecnoEtica | Ciudadanía Digital</title>
+<style>
+:root{--primary:#5b50d6;--secondary:#12a995;--ink:#202344;--muted:#687087;--bg:#f5f6ff;--white:#fff;--border:#e5e6f3}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+header{padding:42px 20px;text-align:center;color:#fff;background:linear-gradient(135deg,#4940b9,#8278ee)}
+.logo{font-size:48px;display:grid;place-items:center;width:86px;height:86px;margin:0 auto 14px;background:#ffffff25;border:1px solid #ffffff55;border-radius:25px}
+header h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.1;margin:8px 0}
+header p{max-width:620px;margin:14px auto 22px;color:#f0efff}
+button{font:inherit;font-weight:700;cursor:pointer;border:0;border-radius:12px;padding:11px 17px;background:var(--primary);color:#fff}
+button:hover{filter:brightness(.96)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f6b73c;outline-offset:3px}
+.primary-light{background:#fff;color:#5146c8}
+.secondary{background:#eeedff;color:#5146c8}
+nav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:12px;background:#fff;border-bottom:1px solid var(--border)}
+nav button{background:#f0efff;color:#5146c8;padding:8px 13px}
+nav button.active{background:var(--primary);color:#fff}
+main{max-width:1000px;margin:auto;padding:24px 18px}
+section.page{display:none}
+section.page.active{display:block}
+h2{font-size:1.65rem;line-height:1.25;margin:0 0 12px}
+h3{margin:0 0 8px}
+p{margin:8px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px;margin:18px 0}
+.card{background:#fff;border:1px solid var(--border);border-radius:17px;padding:19px;box-shadow:0 4px 14px #30305c08}
+.card.good{border-top:4px solid var(--secondary)}
+.card.risk{border-top:4px solid #f2a52b}
+.card.tip{border-top:4px solid #8177ed}
+.emoji{font-size:30px}
+.muted{color:var(--muted);font-size:.92rem}
+.callout{background:#eeedff;border-radius:15px;padding:18px;margin:18px 0}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.question{font-weight:750;font-size:1.1rem;margin:16px 0 10px}
+.choice{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:white;color:var(--ink);font-weight:550}
+.choice.selected{border:2px solid var(--primary);background:#f1f0ff}
+.choice.correct{border-color:#12a995;background:#e8fbf5}
+.choice.wrong{border-color:#e78a69;background:#fff1ec}
+.feedback{display:none;padding:13px;border-radius:12px;background:#f0efff;margin:12px 0}
+.feedback.show{display:block}
+.progress{height:8px;background:#e6e7f4;border-radius:10px;overflow:hidden;margin:14px 0}
+.progress span{display:block;height:100%;width:0;background:var(--secondary);transition:width .2s}
+.result{background:#efefff;border-radius:15px;padding:17px;margin:14px 0}
+.hidden{display:none!important}
+.habit{display:flex;align-items:flex-start;gap:11px;margin:13px 0}
+.habit input{width:20px;height:20px;accent-color:var(--primary);margin-top:4px}
+.timer{font-size:clamp(2.5rem,8vw,3.7rem);font-weight:800;text-align:center;margin:12px}
+footer{text-align:center;padding:20px;color:var(--muted);font-size:.85rem}
+@media(max-width:480px){header{padding:30px 16px}main{padding:17px 12px}nav{gap:5px}nav button{font-size:.84rem;padding:8px 10px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="Logo de TecnoEtica">
+    <svg viewBox="0 0 100 100" role="img" aria-label="Cerebro digital con circuito" width="72" height="72">
+      <path d="M48 18C39 8 24 14 24 26C12 28 10 44 19 51C10 62 18 78 31 78C35 90 48 88 50 80V22Z" fill="#b8a6ff" stroke="#fff" stroke-width="3"/>
+      <path d="M52 18C61 8 76 14 76 26C88 28 90 44 81 51C90 62 82 78 69 78C65 90 52 88 50 80V22Z" fill="#45e0d2" stroke="#fff" stroke-width="3"/>
+      <path d="M50 15V85M29 32H41V43M29 62H41V53M71 32H59V43M71 62H59V53" fill="none" stroke="#25336c" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="29" cy="32" r="4" fill="#25336c"/><circle cx="29" cy="62" r="4" fill="#25336c"/><circle cx="71" cy="32" r="4" fill="#25336c"/><circle cx="71" cy="62" r="4" fill="#25336c"/>
+    </svg>
+  </div>
+  <div style="font-size:.75rem;letter-spacing:2px;font-weight:800">APRENDÉ · REFLEXIONÁ · ACTUÁ</div>
+  <h1>TecnoEtica</h1>
+  <h2 style="max-width:760px;margin:12px auto;font-size:clamp(1.15rem,3vw,1.6rem)">Inteligencia artificial responsable: beneficios, riesgos y uso adecuado</h2>
+  <p>Descubrí cómo aprovechar la IA, reconocer sus riesgos y usarla de manera segura, crítica y responsable.</p>
+  <button class="primary-light" id="start">¡Comenzar! 🚀</button>
+</header>
+
+<nav aria-label="Navegación principal">
+  <button class="active" data-page="inicio">Inicio</button>
+  <button data-page="info">Información</button>
+  <button data-page="quiz">Cuestionario</button>
+  <button data-page="juego">Desafío</button>
+  <button data-page="habitos">Mis hábitos</button>
+</nav>
+
+<main>
+<section class="page active" id="inicio">
+  <h2>¡Bienvenido/a! 👋</h2>
+  <p>La inteligencia artificial está presente en muchas actividades de nuestra vida. Aprendé a reconocer sus ventajas, identificar sus riesgos y tomar mejores decisiones cuando la utilizás.</p>
+  <div class="grid">
+    <article class="card good"><div class="emoji">🌟</div><h3>Aprendé</h3><p class="muted">Conocé cómo la IA puede ayudarnos a estudiar, crear y resolver problemas.</p></article>
+    <article class="card risk"><div class="emoji">🛡️</div><h3>Protegete</h3><p class="muted">Reconocé riesgos, cuidá tus datos y verificá la información.</p></article>
+    <article class="card tip"><div class="emoji">🧠</div><h3>Pensá</h3><p class="muted">Usá tu criterio. La IA es una herramienta, no reemplaza tus decisiones.</p></article>
+  </div>
+  <div class="callout"><h3>🎯 Tu misión</h3><p>Convertirte en una persona que usa la IA con responsabilidad, respeto y pensamiento crítico.</p><button data-go="info">Conocer más →</button></div>
+</section>
+
+<section class="page" id="info">
+  <h2>¿Qué es la inteligencia artificial?</h2>
+  <p>La inteligencia artificial (IA) es una tecnología que permite que las computadoras realicen tareas que suelen necesitar capacidades humanas, como reconocer imágenes, comprender textos o generar respuestas.</p>
+  <div class="grid">
+    <article class="card good"><div class="emoji">✨</div><h3>Beneficios</h3><ul><li>Ayuda a estudiar y comprender temas.</li><li>Facilita tareas repetitivas.</li><li>Puede apoyar la investigación y la creatividad.</li><li>Permite acceder a información de distintas formas.</li></ul></article>
+    <article class="card risk"><div class="emoji">⚠️</div><h3>Riesgos</h3><ul><li>Puede generar información incorrecta.</li><li>Puede afectar la privacidad si compartimos datos.</li><li>Puede reproducir prejuicios o discriminación.</li><li>Usarla sin pensar puede dificultar el aprendizaje.</li></ul></article>
+    <article class="card tip"><div class="emoji">🔐</div><h3>Uso adecuado</h3><ul><li>Verificá la información en otras fuentes.</li><li>No compartas contraseñas ni datos personales.</li><li>Usala como apoyo, no para reemplazar tu pensamiento.</li><li>Respetá a otras personas y sus derechos.</li></ul></article>
+  </div>
+  <div class="callout"><h3>💡 Consejo importante</h3><p>La IA puede equivocarse. Antes de compartir una respuesta o utilizarla en una tarea, revisá si es verdadera y comprendé lo que estás haciendo.</p><button data-go="quiz">Poner a prueba lo aprendido →</button></div>
+</section>
+
+<section class="page" id="quiz">
+  <h2>🧠 ¿Cuánto sabés sobre IA?</h2><p class="muted">Respondé las preguntas y descubrí tu nivel de conocimiento.</p>
+  <div class="progress"><span id="quizProgress"></span></div>
+  <div id="quizArea"></div><div class="feedback" id="quizFeedback" role="status"></div>
+  <div class="result hidden" id="quizResult" role="status"></div>
+  <div class="actions"><button id="quizNext">Comprobar respuesta</button><button class="secondary hidden" id="quizRestart">Volver a jugar</button></div>
+</section>
+
+<section class="page" id="juego">
+  <h2>🎮 Desafío: ¿Uso responsable o no?</h2><p>Leé cada situación y elegí si representa un uso responsable de la inteligencia artificial.</p>
+  <div class="card"><div class="muted" id="gameCount">Situación 1 de 5</div><div class="question" id="gameQuestion"></div>
+    <button class="choice" id="gameYes">✅ Sí, es responsable</button><button class="choice" id="gameNo">❌ No, debo cambiar algo</button>
+    <div class="feedback" id="gameFeedback" role="status"></div><div class="progress"><span id="gameProgress"></span></div>
+    <div class="result hidden" id="gameResult"></div><button id="gameNext">Responder</button>
+  </div>
+</section>
+
+<section class="page" id="habitos">
+  <h2>🌱 Mis hábitos digitales</h2><p>Marcá los hábitos responsables que cumpliste hoy. ¡Cada pequeño paso cuenta!</p>
+  <div class="card" id="habitList">
+    <label class="habit"><input type="checkbox"><span>Verifiqué la información que me dio la IA.</span></label>
+    <label class="habit"><input type="checkbox"><span>No compartí datos personales o contraseñas.</span></label>
+    <label class="habit"><input type="checkbox"><span>Usé la IA para aprender, no solo para copiar.</span></label>
+    <label class="habit"><input type="checkbox"><span>Respeté a otras personas al utilizar herramientas digitales.</span></label>
+    <label class="habit"><input type="checkbox"><span>Revisé y comprendí las respuestas antes de utilizarlas.</span></label>
+  </div>
+  <div class="result" role="status"><h3>Tu progreso de hoy: <span id="habitScore">0/5</span></h3><div class="progress"><span id="habitProgress"></span></div><p id="habitAdvice">¡Empezá marcando un hábito!</p></div>
+  <div class="card" style="text-align:center"><h3>⏱️ Pausa digital</h3><p class="muted">Tomate un momento para descansar de la pantalla.</p><div class="timer" id="timer">01:00</div><button id="timerStart">Iniciar pausa</button> <button class="secondary" id="timerReset">Reiniciar</button><p id="timerMessage" class="muted" role="status"></p></div>
+</section>
+</main>
+<footer>TecnoEtica · Proyecto escolar de ciudadanía digital 💜</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const pages=[...document.querySelectorAll('.page')], nav=[...document.querySelectorAll('[data-page]')];
+function showPage(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='quiz')renderQuiz();if(id==='juego')renderGame();document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+nav.forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.go)));
+$('start').addEventListener('click',()=>showPage('info'));
+
+const questions=[
+{q:'¿Cuál es un beneficio de la IA en la educación?',a:['Ayudar a explicar temas difíciles','Garantizar que todo sea verdadero','Reemplazar a todos los docentes','Evitar que pensemos'],correct:0,why:'La IA puede explicar conceptos y ofrecer ejemplos, pero debemos revisar sus respuestas.'},
+{q:'¿Qué dato NO deberías compartir con una herramienta de IA?',a:['Un tema de historia','Una pregunta de matemática','Tu contraseña personal','Una idea para un cuento'],correct:2,why:'Las contraseñas y otros datos privados deben mantenerse protegidos.'},
+{q:'La IA puede generar información equivocada.',a:['Verdadero','Falso'],correct:0,why:'La IA puede cometer errores. Por eso es importante verificar la información.'},
+{q:'¿Cuál es la mejor forma de usar IA para una tarea?',a:['Copiar todo sin leer','Pedir ayuda, comprender y revisar','Entregar cualquier respuesta','No estudiar el tema'],correct:1,why:'La IA puede servir como apoyo para aprender, pero el trabajo debe ser comprendido por vos.'},
+{q:'¿Qué debemos hacer antes de compartir una imagen creada con IA de otra persona?',a:['Publicarla sin preguntar','Cambiarle el nombre','Pensar en su privacidad y pedir permiso','Compartirla en todos lados'],correct:2,why:'Hay que respetar la privacidad, la imagen y los derechos de las personas.'},
+{q:'Una respuesta de IA parece muy convincente. ¿Qué conviene hacer?',a:['Creerla automáticamente','Verificarla con fuentes confiables','Compartirla sin leer','Suponer que nunca se equivoca'],correct:1,why:'Aunque suene segura, la IA puede equivocarse: verificá los datos.'},
+{q:'¿Qué es un sesgo en una herramienta de IA?',a:['Un error o preferencia injusta que puede afectar sus resultados','Una contraseña segura','Una actualización del programa','Una forma de apagar la computadora'],correct:0,why:'Los datos o el diseño pueden provocar resultados injustos para algunas personas.'},
+{q:'¿Cómo conviene mencionar el uso de IA en una tarea escolar?',a:['Ocultarlo siempre','Decir que hiciste todo sin ayuda','Seguir las reglas de la escuela y ser transparente','Copiar la respuesta sin revisar'],correct:2,why:'Ser transparente y respetar las indicaciones escolares es parte del uso responsable.'}
+];
+let qi=0,score=0,selected=-1,checked=false;
+function renderQuiz(){if(qi>=questions.length){quizResult();return;}const q=questions[qi];$('quizArea').innerHTML=`<div class="muted">Pregunta ${qi+1} de ${questions.length}</div><div class="question">${q.q}</div>`+q.a.map((a,i)=>`<button class="choice ${selected===i?'selected':''}" data-answer="${i}">${a}</button>`).join('');$('quizArea').querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>{if(checked)return;selected=+b.dataset.answer;$('quizArea').querySelectorAll('.choice').forEach(c=>c.classList.toggle('selected',c===b));}));$('quizFeedback').className='feedback';$('quizFeedback').textContent='';$('quizProgress').style.width=(qi/questions.length*100)+'%';$('quizNext').textContent='Comprobar respuesta';$('quizNext').disabled=false;$('quizRestart').classList.add('hidden');}
+function quizResult(){ $('quizArea').innerHTML='';$('quizFeedback').className='feedback';$('quizResult').classList.remove('hidden');let pct=Math.round(score/questions.length*100);let advice=pct===100?'¡Excelente! Tenés muy buenos conocimientos sobre TecnoEtica.':pct>=60?'¡Muy bien! Repasá los consejos para seguir mejorando.':'¡A seguir aprendiendo! Volvé a leer la información y probá otra vez.';$('quizResult').innerHTML=`<h3>Resultado: ${score} de ${questions.length} (${pct}%)</h3><p>${advice}</p>`;$('quizProgress').style.width='100%';$('quizNext').classList.add('hidden');$('quizRestart').classList.remove('hidden');}
+$('quizNext').addEventListener('click',()=>{if(qi>=questions.length)return;if(!checked){if(selected<0){$('quizFeedback').textContent='Elegí una respuesta antes de continuar.';$('quizFeedback').className='feedback show';return;}checked=true;let q=questions[qi],ok=selected===q.correct;if(ok)score++;$('quizArea').querySelectorAll('.choice').forEach((b,i)=>{if(i===q.correct)b.classList.add('correct');else if(i===selected)b.classList.add('wrong');});$('quizFeedback').textContent=(ok?'¡Muy bien! ':'No es esa. ')+q.why;$('quizFeedback').className='feedback show';$('quizNext').textContent=qi===questions.length-1?'Ver resultado':'Siguiente pregunta';}else{qi++;selected=-1;checked=false;if(qi>=questions.length)quizResult();else renderQuiz();}});
+$('quizRestart').addEventListener('click',()=>{qi=0;score=0;selected=-1;checked=false;$('quizResult').classList.add('hidden');$('quizNext').classList.remove('hidden');renderQuiz();});renderQuiz();
+
+const situations=[
+{q:'Usás la IA para entender un tema y después lo explicás con tus propias palabras.',yes:true,why:'¡Bien! La IA puede ayudarte a aprender si comprendés lo que explica.'},
+{q:'Compartís tu dirección y contraseña para que la IA te conozca mejor.',yes:false,why:'No es seguro. Nunca compartas contraseñas ni datos personales.'},
+{q:'Verificás una respuesta de IA en un libro o sitio confiable.',yes:true,why:'¡Excelente! Comparar fuentes ayuda a detectar errores.'},
+{q:'Publicás una imagen falsa de un compañero creada con IA sin su permiso.',yes:false,why:'Puede afectar su privacidad y causarle daño. Respetá su imagen y pedí permiso.'},
+{q:'Usás IA para copiar una tarea sin leerla ni comprenderla.',yes:false,why:'La IA debe ser una ayuda para aprender, no reemplazar tu propio esfuerzo.'},
+{q:'Una app de IA te pide tu contraseña para personalizar las respuestas. Se la das.',yes:false,why:'No compartas contraseñas. Protegé tus cuentas y datos personales.'},
+{q:'La IA te da una noticia sorprendente y buscás si medios confiables también la publicaron.',yes:true,why:'¡Correcto! Corroborar una noticia ayuda a evitar la desinformación.'},
+{q:'Generás una imagen de un compañero en una situación vergonzosa y la mandás al grupo.',yes:false,why:'No está bien crear o difundir contenido que humille a alguien. Respetá su dignidad y privacidad.'}
+];
+let gi=0,gscore=0,gsel=null,gchecked=false;
+function renderGame(){if(gi>=situations.length){gameResult();return;}let s=situations[gi];$('gameCount').textContent=`Situación ${gi+1} de ${situations.length}`;$('gameQuestion').textContent=s.q;['gameYes','gameNo'].forEach(id=>{ $(id).classList.remove('selected','correct','wrong');$(id).disabled=false;});$('gameFeedback').className='feedback';$('gameFeedback').textContent='';$('gameResult').classList.add('hidden');$('gameProgress').style.width=(gi/situations.length*100)+'%';$('gameNext').textContent='Responder';$('gameNext').disabled=false;gsel=null;gchecked=false;}
+function choose(v){if(gchecked)return;gsel=v;$('gameYes').classList.toggle('selected',v===true);$('gameNo').classList.toggle('selected',v===false);}
+$('gameYes').addEventListener('click',()=>choose(true));$('gameNo').addEventListener('click',()=>choose(false));
+$('gameNext').addEventListener('click',()=>{if(gi>=situations.length)return;if(!gchecked){if(gsel===null){$('gameFeedback').textContent='Elegí una opción para continuar.';$('gameFeedback').className='feedback show';return;}gchecked=true;let s=situations[gi],ok=gsel===s.yes;if(ok)gscore++;$(s.yes?'gameYes':'gameNo').classList.add('correct');if(!ok)$(gsel?'gameYes':'gameNo').classList.add('wrong');$('gameFeedback').textContent=(ok?'¡Acertaste! ':'Revisá esta situación. ')+s.why;$('gameFeedback').className='feedback show';$('gameYes').disabled=true;$('gameNo').disabled=true;$('gameNext').textContent=gi===situations.length-1?'Ver resultado':'Siguiente';}else{gi++;if(gi>=situations.length)gameResult();else renderGame();}});
+function gameResult(){ $('gameQuestion').textContent='¡Desafío completado!';$('gameYes').classList.add('hidden');$('gameNo').classList.add('hidden');$('gameProgress').style.width='100%';let advice=gscore===situations.length?'¡Excelente! Reconocés muy bien los usos responsables.':gscore>=Math.ceil(situations.length*0.6)?'¡Muy bien! Seguí practicando decisiones seguras.':'Repasá los consejos de Información y volvé a intentarlo.';$('gameResult').innerHTML=`<h3>Tu puntaje: ${gscore}/${situations.length}</h3><p>${advice}</p><button id="gameAgain">Jugar otra vez</button>`;$('gameResult').classList.remove('hidden');$('gameNext').classList.add('hidden');$('gameResult').querySelector('#gameAgain').addEventListener('click',()=>{gi=0;gscore=0;$('gameYes').classList.remove('hidden');$('gameNo').classList.remove('hidden');$('gameNext').classList.remove('hidden');renderGame();});}renderGame();
+
+const checks=[...document.querySelectorAll('#habitList input')];
+function updateHabits(){let n=checks.filter(c=>c.checked).length;$('habitScore').textContent=n+'/5';$('habitProgress').style.width=(n/5*100)+'%';$('habitAdvice').textContent=n===5?'¡Genial! Hoy practicaste todos los hábitos responsables.':n>=3?'¡Vas muy bien! Intentá completar los hábitos que faltan.':n>0?'¡Buen comienzo! Seguí cuidando tu privacidad y aprendiendo.':'¡Empezá marcando un hábito responsable!';}
+checks.forEach(c=>c.addEventListener('change',updateHabits));
+
+let seconds=60,interval=null;
+function updateTimer(){$('timer').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');}
+$('timerStart').addEventListener('click',()=>{if(interval){clearInterval(interval);interval=null;$('timerStart').textContent='Continuar pausa';return;}if(seconds<=0)seconds=60;$('timerStart').textContent='Pausar';$('timerMessage').textContent='Dejá la pantalla un momento y descansá.';interval=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearInterval(interval);interval=null;$('timerStart').textContent='Iniciar pausa';$('timerMessage').textContent='¡Pausa terminada! Muy bien por cuidar tu bienestar digital.';}},1000);});
+$('timerReset').addEventListener('click',()=>{clearInterval(interval);interval=null;seconds=60;updateTimer();$('timerStart').textContent='Iniciar pausa';$('timerMessage').textContent='';});
+updateTimer();
+</script>
+</body>
+</html>
